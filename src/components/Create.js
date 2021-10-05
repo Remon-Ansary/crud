@@ -1,8 +1,12 @@
 import React,{useState} from 'react'
 import axios from 'axios';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { useHistory  } from 'react-router';
 
 function Create () {
+
+  let history = useHistory();
 
   const[firstName,setFirstName]= useState('');
   const[lastName, setLastName]= useState('');
@@ -14,6 +18,10 @@ function Create () {
         lastName,
         checkBox
       })
+      .then(()=>{
+        history.push('./read')
+      })
+      
   }
   return(
   <Form className="create-form">
@@ -28,7 +36,9 @@ function Create () {
     <Form.Field>
       <Checkbox label='I agree to the Terms and Conditions' onChange={(e)=>setCheckBox(!checkBox)} />
     </Form.Field>
+    
     <Button  onClick={postData} type='submit'>Submit</Button>
+  
   </Form>
   )
 }
