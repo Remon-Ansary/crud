@@ -12,12 +12,14 @@ function Update() {
   const [id, setId] = useState(null);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [rating, setRating] = useState('');
   const [checkBox, setCheckBox] = useState(false);
 
   useEffect(() => {
     setId(localStorage.getItem('ID'))
     setFirstName(localStorage.getItem('First Name'));
     setLastName(localStorage.getItem('Last Name'));
+    setRating(localStorage.getItem('Rating'));
     setCheckBox(localStorage.getItem('Checkbox Value'))
   }, [])
 
@@ -26,6 +28,7 @@ function Update() {
     axios.put(`https://615b12174a360f0017a81474.mockapi.io/fakedata/${id}`, {
       firstName,
       lastName,
+      rating,
       checkBox
     })
       .then(() => {
@@ -41,6 +44,10 @@ function Update() {
       <Form.Field>
         <label>Last Name</label>
         <input placeholder='Last Name' value={lastName} onChange={(e) => setLastName(e.target.value)} />
+      </Form.Field>
+      <Form.Field>
+        <label>Rating</label>
+        <input placeholder='rating' value={rating} onChange={(e) => setRating(e.target.value)} />
       </Form.Field>
       <Form.Field>
         <Checkbox label='I agree to the Terms and Conditions' checked={checkBox} onChange={(e) => setCheckBox(!checkBox)} />

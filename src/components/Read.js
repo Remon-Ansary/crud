@@ -4,13 +4,43 @@ import { Table, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 function Read() {
     const [APIData, setAPIData] = useState([]);
+    const [order,setOrder]= useState("ASC")
     const setData = (data) => {
-        let { id, firstName, lastName, checkbox } = data;
+        let { id, firstName, lastName,rating, checkbox } = data;
         localStorage.setItem('ID', id);
         localStorage.setItem('First Name', firstName);
         localStorage.setItem('Last Name', lastName);
-        localStorage.setItem('Checkbox Value', checkbox)
+        localStorage.setItem('Rating', rating);
+        localStorage.setItem('Checkbox Value', checkbox);
     }
+
+//sorting part
+
+const sortingASC = (col)=>{
+    if(order == "ASC"){
+        const sorted =[...APIData].sort((a,b)=>
+        a[col].toLowerCase()>b[col].toLowerCase() ? 1: -1
+        );
+        setAPIData(sorted);
+        setOrder("DSC");
+    }
+
+}
+
+const sortingDSC = (col)=>{
+   
+    if(order == "DSC"){
+        const sorted =[...APIData].sort((a,b)=>
+        a[col].toLowerCase()<b[col].toLowerCase() ? 1: -1
+        );
+        setAPIData(sorted);
+        setOrder("ASC");
+    }
+
+}
+
+//sorting part end
+
 
     //    delete part 
     const getData = (data) => {
@@ -39,13 +69,19 @@ function Read() {
     }, [])
 
     return (
+
+        <div>
+            <button type="button"  onClick={()=>sortingASC("rating")}>Less popular</button>
+            <button type="button"  onClick={()=>sortingDSC("rating")}>Popular</button>
         <Table celled>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>First Name</Table.HeaderCell>
+                    <Table.HeaderCell >First Name</Table.HeaderCell>
                     <Table.HeaderCell>Last Name</Table.HeaderCell>
-                    <Table.HeaderCell>Checkbox</Table.HeaderCell>
+                    <Table.HeaderCell >Rating</Table.HeaderCell>
+                    <Table.HeaderCell>Checkbox</Table.HeaderCell>                  
                     <Table.HeaderCell>Update</Table.HeaderCell>
+                
                 </Table.Row>
             </Table.Header>
 
@@ -55,7 +91,9 @@ function Read() {
                         <Table.Row>
                             <Table.Cell>{data.firstName}</Table.Cell>
                             <Table.Cell>{data.lastName}</Table.Cell>
+                            <Table.Cell>{data.rating}</Table.Cell>
                             <Table.Cell>{data.checkBox ? 'checked' : 'unChecked'}</Table.Cell>
+                        
                             <Link to='/update'>
 
                                 <Table.Cell>
@@ -73,6 +111,7 @@ function Read() {
                 }
             </Table.Body>
         </Table>
+        </div>
     )
 
 

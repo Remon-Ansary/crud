@@ -4,7 +4,11 @@ import Read from './components/Read'
 import Delete from './components/Delete'
 import Update from './components/Update'
 import {BrowserRouter as Router,Route} from 'react-router-dom'
+
+
 function App() {
+
+  
   return (
     <Router>
     <div className="main">
@@ -17,6 +21,8 @@ function App() {
    </div>
     </div>
     </Router>
+
+
   );
 }
 
