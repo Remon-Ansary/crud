@@ -6,11 +6,12 @@ function Read() {
     const [APIData, setAPIData] = useState([]);
     const [order,setOrder]= useState("ASC")
     const setData = (data) => {
-        let { id, firstName, lastName,rating, checkbox } = data;
+        let { id, firstName, lastName,rating,image,checkbox } = data;
         localStorage.setItem('ID', id);
         localStorage.setItem('First Name', firstName);
         localStorage.setItem('Last Name', lastName);
         localStorage.setItem('Rating', rating);
+        localStorage.setItem('image', image);
         localStorage.setItem('Checkbox Value', checkbox);
     }
 
@@ -79,8 +80,10 @@ const sortingDSC = (col)=>{
                     <Table.HeaderCell >First Name</Table.HeaderCell>
                     <Table.HeaderCell>Last Name</Table.HeaderCell>
                     <Table.HeaderCell >Rating</Table.HeaderCell>
-                    <Table.HeaderCell>Checkbox</Table.HeaderCell>                  
+                    <Table.HeaderCell>Checkbox</Table.HeaderCell>      
+                    <Table.HeaderCell>Image</Table.HeaderCell>            
                     <Table.HeaderCell>Update</Table.HeaderCell>
+                    
                 
                 </Table.Row>
             </Table.Header>
@@ -91,8 +94,9 @@ const sortingDSC = (col)=>{
                         <Table.Row>
                             <Table.Cell>{data.firstName}</Table.Cell>
                             <Table.Cell>{data.lastName}</Table.Cell>
-                            <Table.Cell>{data.rating}</Table.Cell>
+                            <Table.Cell>{data.rating}</Table.Cell> 
                             <Table.Cell>{data.checkBox ? 'checked' : 'unChecked'}</Table.Cell>
+                             <Table.Cell>{data.image}</Table.Cell>
                         
                             <Link to='/update'>
 
@@ -104,13 +108,17 @@ const sortingDSC = (col)=>{
                             <Table.Cell>
                                 <Button onClick={() => onDelete(data.id)}>Delete</Button>
                             </Table.Cell>
-
+                          
                         </Table.Row>
+                        
                     )
                 })
                 }
+                
+     
             </Table.Body>
         </Table>
+
         </div>
     )
 

@@ -10,6 +10,7 @@ function Create() {
   const [rating, setRating] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [image, setImage] = useState('');
   const [checkBox, setCheckBox] = useState(false);
 
   const postData = () => {
@@ -17,6 +18,7 @@ function Create() {
       rating,
       firstName,
       lastName,
+      image,
       checkBox
     })
       .then(() => {
@@ -37,6 +39,10 @@ function Create() {
       <Form.Field>
         <label>Rating</label>
         <input placeholder='Rating' onChange={(e) => setRating(e.target.value)} />
+      </Form.Field>
+      <Form.Field>
+        <label>Image Link</label>
+        <input placeholder='image' onChange={(e) => setImage(e.target.value)} />
       </Form.Field>
       <Form.Field>
         <Checkbox label='I agree to the Terms and Conditions' onChange={(e) => setCheckBox(!checkBox)} />

@@ -13,6 +13,7 @@ function Update() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [rating, setRating] = useState('');
+  const [image, setImage] = useState('');
   const [checkBox, setCheckBox] = useState(false);
 
   useEffect(() => {
@@ -20,6 +21,7 @@ function Update() {
     setFirstName(localStorage.getItem('First Name'));
     setLastName(localStorage.getItem('Last Name'));
     setRating(localStorage.getItem('Rating'));
+    setImage(localStorage.getItem('image'));
     setCheckBox(localStorage.getItem('Checkbox Value'))
   }, [])
 
@@ -48,6 +50,10 @@ function Update() {
       <Form.Field>
         <label>Rating</label>
         <input placeholder='rating' value={rating} onChange={(e) => setRating(e.target.value)} />
+      </Form.Field>
+      <Form.Field>
+        <label>Image</label>
+        <input placeholder='image' value={image} onChange={(e) => setImage(e.target.value)} />
       </Form.Field>
       <Form.Field>
         <Checkbox label='I agree to the Terms and Conditions' checked={checkBox} onChange={(e) => setCheckBox(!checkBox)} />
