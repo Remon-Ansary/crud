@@ -126,7 +126,7 @@ function Read() {
                                     <Card.Content>
                                         <Card.Header>{data.firstName}</Card.Header>
                                         <Card.Meta>
-                                            <span className='date'>    <Rating maxRating={5} defaultRating={data.rating} icon='star' size='mini' /></span>
+                                            <span className='date'>   </span>
                                         </Card.Meta>
                                         <Card.Description>
                                            {data.rating}
